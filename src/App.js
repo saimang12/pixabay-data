@@ -9,7 +9,7 @@ const App = () => {
     const [search, setSearch] = useState('man');
     const [load, setLoad] = useState(true);
 
-    const pixaData = `https://pixabay.com/api/?key=34354439-e2d66846314cd63eaa92b43df&q=${search}&image_type=photo&page=1&per_page=50&lang=ko`;
+    const pixaData = `https://pixabay.com/api/?key=34354439-e2d66846314cd63eaa92b43df&q=${search}&image_type=photo&page=1&per_page=48&lang=ko`;
     const getData = async () => {
         setLoad(true);
         const r = await fetch(pixaData).then(it => it.json());
