@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import './app.css';
+import './main.scss';
+import { Link } from "react-router-dom";
 
 
 const App = () => {
@@ -8,7 +9,7 @@ const App = () => {
     const [search, setSearch] = useState('man');
     const [load, setLoad] = useState(true);
 
-    const pixaData = `https://pixabay.com/api/?key=34354439-e2d66846314cd63eaa92b43df&q=${search}&image_type=photo&page=2&per_page=200&lang=ko`;
+    const pixaData = `https://pixabay.com/api/?key=34354439-e2d66846314cd63eaa92b43df&q=${search}&image_type=photo&page=1&per_page=50&lang=ko`;
     const getData = async () => {
         setLoad(true);
         const r = await fetch(pixaData).then(it => it.json());
@@ -19,10 +20,10 @@ const App = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // if (input.length < 3) {
-        //     alert('더 입력하세요')
-        //     return
-        // }
+        if (input.length < 1) {
+            alert('검색어는 1글자 이상 입력해주세요')
+            return
+        }
         setSearch(input);
     }
     const onChange = e => setInput(e.target.value);
@@ -34,24 +35,38 @@ const App = () => {
     }
     return (
         <div className="app">
-            <form onSubmit={onSubmit}>
-                <input type="text" onChange={onChange} />
-                <button><i className="xi-search"></i></button>
-            </form>
-            <ul className="list">
-                {
-                    data.map(it => {
-                        return (
-                            <li key={it.id}>
-                                <figure>
-                                    <img src={it.largeImageURL} alt="" />
-                                </figure>
-                                <strong>{it.tags}</strong>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+            <header className="header">
+                <div className="inner">
+                    <h1>
+                        <a href="/">Search Img</a>
+                    </h1>
+                    <form onSubmit={onSubmit}>
+                        <input type="text" onChange={onChange} />
+                        <button><i className="xi-search"></i></button>
+                    </form>
+                </div>
+            </header>
+            <main>
+                <ul className="list">
+                    {
+                        data.map(it => {
+                            return (
+                                <li key={it.id}>
+                                    <figure>
+                                        <img src={it.largeImageURL} alt={it.tags} />
+                                    </figure>
+                                    <span>{it.tags}</span>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </main>
+            <footer className="footer">
+                <div className="inner">
+                    <p>&copy; Park Jinwoo pixabay beginning App</p>
+                </div>
+            </footer>
         </div>
 
 
