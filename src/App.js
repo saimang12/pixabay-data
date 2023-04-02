@@ -38,7 +38,7 @@ const App = () => {
             <header className="header">
                 <div className="inner">
                     <h1>
-                        <a href="/">Search Img</a>
+                        <Link to={`/`}>Search Img</Link>
                     </h1>
                     <form onSubmit={onSubmit}>
                         <input type="text" onChange={onChange} />
