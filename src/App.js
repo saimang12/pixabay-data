@@ -38,7 +38,7 @@ const App = () => {
             <header className="header">
                 <div className="inner">
                     <h1>
-                        <Link to={`https://saimang12.github.io/pixabay-data/`}>Search Img</Link>
+                        <a href="https://saimang12.github.io/pixabay-data/">Search Img</a>
                     </h1>
                     <form onSubmit={onSubmit}>
                         <input type="text" onChange={onChange} />
